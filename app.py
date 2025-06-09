@@ -1,322 +1,50 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": 1,
-   "id": "4c32dab1",
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Collecting streamlit\n",
-      "  Obtaining dependency information for streamlit from https://files.pythonhosted.org/packages/13/e6/69fcbae3dd2fcb2f54283a7cbe03c8b944b79997f1b526984f91d4796a02/streamlit-1.45.1-py3-none-any.whl.metadata\n",
-      "  Downloading streamlit-1.45.1-py3-none-any.whl.metadata (8.9 kB)\n",
-      "Collecting altair<6,>=4.0 (from streamlit)\n",
-      "  Obtaining dependency information for altair<6,>=4.0 from https://files.pythonhosted.org/packages/aa/f3/0b6ced594e51cc95d8c1fc1640d3623770d01e4969d29c0bd09945fafefa/altair-5.5.0-py3-none-any.whl.metadata\n",
-      "  Downloading altair-5.5.0-py3-none-any.whl.metadata (11 kB)\n",
-      "Collecting blinker<2,>=1.5.0 (from streamlit)\n",
-      "  Obtaining dependency information for blinker<2,>=1.5.0 from https://files.pythonhosted.org/packages/10/cb/f2ad4230dc2eb1a74edf38f1a38b9b52277f75bef262d8908e60d957e13c/blinker-1.9.0-py3-none-any.whl.metadata\n",
-      "  Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)\n",
-      "Requirement already satisfied: cachetools<6,>=4.0 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (5.3.3)\n",
-      "Requirement already satisfied: click<9,>=7.0 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (8.0.4)\n",
-      "Requirement already satisfied: numpy<3,>=1.23 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (1.24.3)\n",
-      "Requirement already satisfied: packaging<25,>=20 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (23.0)\n",
-      "Requirement already satisfied: pandas<3,>=1.4.0 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (1.5.3)\n",
-      "Requirement already satisfied: pillow<12,>=7.1.0 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (9.4.0)\n",
-      "Requirement already satisfied: protobuf<7,>=3.20 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (4.25.3)\n",
-      "Requirement already satisfied: pyarrow>=7.0 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (11.0.0)\n",
-      "Requirement already satisfied: requests<3,>=2.27 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (2.31.0)\n",
-      "Requirement already satisfied: tenacity<10,>=8.1.0 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (8.2.2)\n",
-      "Requirement already satisfied: toml<2,>=0.10.1 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (0.10.2)\n",
-      "Requirement already satisfied: typing-extensions<5,>=4.4.0 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (4.13.2)\n",
-      "Requirement already satisfied: watchdog<7,>=2.1.5 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (2.1.6)\n",
-      "Collecting gitpython!=3.1.19,<4,>=3.0.7 (from streamlit)\n",
-      "  Obtaining dependency information for gitpython!=3.1.19,<4,>=3.0.7 from https://files.pythonhosted.org/packages/1d/9a/4114a9057db2f1462d5c8f8390ab7383925fe1ac012eaa42402ad65c2963/GitPython-3.1.44-py3-none-any.whl.metadata\n",
-      "  Downloading GitPython-3.1.44-py3-none-any.whl.metadata (13 kB)\n",
-      "Collecting pydeck<1,>=0.8.0b4 (from streamlit)\n",
-      "  Obtaining dependency information for pydeck<1,>=0.8.0b4 from https://files.pythonhosted.org/packages/ab/4c/b888e6cf58bd9db9c93f40d1c6be8283ff49d88919231afe93a6bcf61626/pydeck-0.9.1-py2.py3-none-any.whl.metadata\n",
-      "  Downloading pydeck-0.9.1-py2.py3-none-any.whl.metadata (4.1 kB)\n",
-      "Requirement already satisfied: tornado<7,>=6.0.3 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from streamlit) (6.3.2)\n",
-      "Requirement already satisfied: jinja2 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from altair<6,>=4.0->streamlit) (3.1.2)\n",
-      "Requirement already satisfied: jsonschema>=3.0 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from altair<6,>=4.0->streamlit) (4.17.3)\n",
-      "Collecting narwhals>=1.14.2 (from altair<6,>=4.0->streamlit)\n",
-      "  Obtaining dependency information for narwhals>=1.14.2 from https://files.pythonhosted.org/packages/8d/0f/f9ae7c8c55f9078c852b13ea4a6e92e5f4d6d4c8fc0781ec2882957006bb/narwhals-1.42.0-py3-none-any.whl.metadata\n",
-      "  Downloading narwhals-1.42.0-py3-none-any.whl.metadata (11 kB)\n",
-      "Requirement already satisfied: colorama in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from click<9,>=7.0->streamlit) (0.4.6)\n",
-      "Collecting gitdb<5,>=4.0.1 (from gitpython!=3.1.19,<4,>=3.0.7->streamlit)\n",
-      "  Obtaining dependency information for gitdb<5,>=4.0.1 from https://files.pythonhosted.org/packages/a0/61/5c78b91c3143ed5c14207f463aecfc8f9dbb5092fb2869baf37c273b2705/gitdb-4.0.12-py3-none-any.whl.metadata\n",
-      "  Downloading gitdb-4.0.12-py3-none-any.whl.metadata (1.2 kB)\n",
-      "Requirement already satisfied: python-dateutil>=2.8.1 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from pandas<3,>=1.4.0->streamlit) (2.8.2)\n",
-      "Requirement already satisfied: pytz>=2020.1 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from pandas<3,>=1.4.0->streamlit) (2022.7)\n",
-      "Requirement already satisfied: charset-normalizer<4,>=2 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from requests<3,>=2.27->streamlit) (2.0.4)\n",
-      "Requirement already satisfied: idna<4,>=2.5 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from requests<3,>=2.27->streamlit) (3.4)\n",
-      "Requirement already satisfied: urllib3<3,>=1.21.1 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from requests<3,>=2.27->streamlit) (2.4.0)\n",
-      "Requirement already satisfied: certifi>=2017.4.17 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from requests<3,>=2.27->streamlit) (2025.4.26)\n",
-      "Collecting smmap<6,>=3.0.1 (from gitdb<5,>=4.0.1->gitpython!=3.1.19,<4,>=3.0.7->streamlit)\n",
-      "  Obtaining dependency information for smmap<6,>=3.0.1 from https://files.pythonhosted.org/packages/04/be/d09147ad1ec7934636ad912901c5fd7667e1c858e19d355237db0d0cd5e4/smmap-5.0.2-py3-none-any.whl.metadata\n",
-      "  Downloading smmap-5.0.2-py3-none-any.whl.metadata (4.3 kB)\n",
-      "Requirement already satisfied: MarkupSafe>=2.0 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from jinja2->altair<6,>=4.0->streamlit) (2.1.1)\n",
-      "Requirement already satisfied: attrs>=17.4.0 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from jsonschema>=3.0->altair<6,>=4.0->streamlit) (25.3.0)\n",
-      "Requirement already satisfied: pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,>=0.14.0 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from jsonschema>=3.0->altair<6,>=4.0->streamlit) (0.18.0)\n",
-      "Requirement already satisfied: six>=1.5 in c:\\users\\my computers\\anaconda3\\lib\\site-packages (from python-dateutil>=2.8.1->pandas<3,>=1.4.0->streamlit) (1.16.0)\n",
-      "Downloading streamlit-1.45.1-py3-none-any.whl (9.9 MB)\n",
-      "   ---------------------------------------- 0.0/9.9 MB ? eta -:--:--\n",
-      "   ---------------------------------------- 0.1/9.9 MB 1.3 MB/s eta 0:00:08\n",
-      "    --------------------------------------- 0.2/9.9 MB 2.3 MB/s eta 0:00:05\n",
-      "   - -------------------------------------- 0.3/9.9 MB 2.6 MB/s eta 0:00:04\n",
-      "   -- ------------------------------------- 0.6/9.9 MB 3.3 MB/s eta 0:00:03\n",
-      "   -- ------------------------------------- 0.6/9.9 MB 2.9 MB/s eta 0:00:04\n",
-      "   -- ------------------------------------- 0.6/9.9 MB 2.9 MB/s eta 0:00:04\n",
-      "   -- ------------------------------------- 0.6/9.9 MB 2.9 MB/s eta 0:00:04\n",
-      "   -- ------------------------------------- 0.6/9.9 MB 2.9 MB/s eta 0:00:04\n",
-      "   -- ------------------------------------- 0.6/9.9 MB 2.9 MB/s eta 0:00:04\n",
-      "   -- ------------------------------------- 0.6/9.9 MB 2.9 MB/s eta 0:00:04\n",
-      "   -- ------------------------------------- 0.6/9.9 MB 2.9 MB/s eta 0:00:04\n",
-      "   ---- ----------------------------------- 1.2/9.9 MB 2.1 MB/s eta 0:00:05\n",
-      "   ---- ----------------------------------- 1.2/9.9 MB 2.1 MB/s eta 0:00:05\n",
-      "   ------- -------------------------------- 1.7/9.9 MB 2.8 MB/s eta 0:00:03\n",
-      "   -------- ------------------------------- 2.1/9.9 MB 3.1 MB/s eta 0:00:03\n",
-      "   ---------- ----------------------------- 2.6/9.9 MB 3.5 MB/s eta 0:00:03\n",
-      "   ---------- ----------------------------- 2.7/9.9 MB 3.5 MB/s eta 0:00:03\n",
-      "   -------------- ------------------------- 3.5/9.9 MB 4.2 MB/s eta 0:00:02\n",
-      "   ---------------- ----------------------- 4.0/9.9 MB 4.6 MB/s eta 0:00:02\n",
-      "   ------------------ --------------------- 4.5/9.9 MB 4.9 MB/s eta 0:00:02\n",
-      "   -------------------- ------------------- 5.1/9.9 MB 5.2 MB/s eta 0:00:01\n",
-      "   --------------------- ------------------ 5.4/9.9 MB 5.4 MB/s eta 0:00:01\n",
-      "   ------------------------ --------------- 6.0/9.9 MB 5.7 MB/s eta 0:00:01\n",
-      "   --------------------------- ------------ 6.7/9.9 MB 6.0 MB/s eta 0:00:01\n",
-      "   --------------------------- ------------ 6.9/9.9 MB 6.1 MB/s eta 0:00:01\n",
-      "   ------------------------------ --------- 7.5/9.9 MB 6.3 MB/s eta 0:00:01\n",
-      "   ------------------------------ --------- 7.5/9.9 MB 6.3 MB/s eta 0:00:01\n",
-      "   ---------------------------------- ----- 8.5/9.9 MB 6.6 MB/s eta 0:00:01\n",
-      "   ----------------------------------- ---- 8.7/9.9 MB 6.5 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  9.6/9.9 MB 7.0 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  9.8/9.9 MB 7.1 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  9.8/9.9 MB 7.1 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  9.8/9.9 MB 7.1 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  9.8/9.9 MB 7.1 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  9.8/9.9 MB 7.1 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  9.8/9.9 MB 7.1 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  9.9/9.9 MB 5.9 MB/s eta 0:00:01\n",
-      "   ---------------------------------------- 9.9/9.9 MB 5.8 MB/s eta 0:00:00\n",
-      "Downloading altair-5.5.0-py3-none-any.whl (731 kB)\n",
-      "   ---------------------------------------- 0.0/731.2 kB ? eta -:--:--\n",
-      "   ---------------------------- ---------- 532.5/731.2 kB 11.1 MB/s eta 0:00:01\n",
-      "   -------------------------------------- - 696.3/731.2 kB 7.3 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  727.0/731.2 kB 5.7 MB/s eta 0:00:01\n",
-      "   ---------------------------------------- 731.2/731.2 kB 5.1 MB/s eta 0:00:00\n",
-      "Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)\n",
-      "Downloading GitPython-3.1.44-py3-none-any.whl (207 kB)\n",
-      "   ---------------------------------------- 0.0/207.6 kB ? eta -:--:--\n",
-      "   --------------------------------------- 207.6/207.6 kB 12.3 MB/s eta 0:00:00\n",
-      "Downloading pydeck-0.9.1-py2.py3-none-any.whl (6.9 MB)\n",
-      "   ---------------------------------------- 0.0/6.9 MB ? eta -:--:--\n",
-      "   --- ------------------------------------ 0.5/6.9 MB 11.3 MB/s eta 0:00:01\n",
-      "   ------ --------------------------------- 1.1/6.9 MB 11.8 MB/s eta 0:00:01\n",
-      "   --------- ------------------------------ 1.6/6.9 MB 11.7 MB/s eta 0:00:01\n",
-      "   ------------ --------------------------- 2.2/6.9 MB 11.7 MB/s eta 0:00:01\n",
-      "   --------------- ------------------------ 2.7/6.9 MB 11.6 MB/s eta 0:00:01\n",
-      "   ------------------ --------------------- 3.3/6.9 MB 11.6 MB/s eta 0:00:01\n",
-      "   ---------------------- ----------------- 3.8/6.9 MB 11.6 MB/s eta 0:00:01\n",
-      "   ------------------------- -------------- 4.4/6.9 MB 11.6 MB/s eta 0:00:01\n",
-      "   ---------------------------- ----------- 4.9/6.9 MB 11.6 MB/s eta 0:00:01\n",
-      "   ------------------------------- -------- 5.4/6.9 MB 12.0 MB/s eta 0:00:01\n",
-      "   --------------------------------- ------ 5.8/6.9 MB 11.7 MB/s eta 0:00:01\n",
-      "   ------------------------------------ --- 6.4/6.9 MB 11.6 MB/s eta 0:00:01\n",
-      "   ---------------------------------------  6.9/6.9 MB 11.6 MB/s eta 0:00:01\n",
-      "   ---------------------------------------- 6.9/6.9 MB 11.0 MB/s eta 0:00:00\n",
-      "Downloading gitdb-4.0.12-py3-none-any.whl (62 kB)\n",
-      "   ---------------------------------------- 0.0/62.8 kB ? eta -:--:--\n",
-      "   -------------------------- ------------- 41.0/62.8 kB ? eta -:--:--\n",
-      "   -------------------------- ------------- 41.0/62.8 kB ? eta -:--:--\n",
-      "   -------------------------- ------------- 41.0/62.8 kB ? eta -:--:--\n",
-      "   -------------------------- ------------- 41.0/62.8 kB ? eta -:--:--\n",
-      "   -------------------------- ------------- 41.0/62.8 kB ? eta -:--:--\n",
-      "   -------------------------- ------------- 41.0/62.8 kB ? eta -:--:--\n",
-      "   ---------------------------------------- 62.8/62.8 kB 176.9 kB/s eta 0:00:00\n",
-      "Downloading narwhals-1.42.0-py3-none-any.whl (359 kB)\n",
-      "   ---------------------------------------- 0.0/359.0 kB ? eta -:--:--\n",
-      "   --------------------------------------- 359.0/359.0 kB 11.3 MB/s eta 0:00:00\n",
-      "Downloading smmap-5.0.2-py3-none-any.whl (24 kB)\n",
-      "Installing collected packages: smmap, narwhals, blinker, pydeck, gitdb, altair, gitpython, streamlit\n",
-      "Successfully installed altair-5.5.0 blinker-1.9.0 gitdb-4.0.12 gitpython-3.1.44 narwhals-1.42.0 pydeck-0.9.1 smmap-5.0.2 streamlit-1.45.1\n"
-     ]
-    }
-   ],
-   "source": [
-    "!pip install streamlit\n"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 2,
-   "id": "d3e9b326",
-   "metadata": {
-    "scrolled": True
-   },
-   "outputs": [
-    {
-     "name": "stderr",
-     "output_type": "stream",
-     "text": [
-      "2025-06-09 15:51:41.716 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.689 \n",
-      "  \u001b[33m\u001b[1mWarning:\u001b[0m to view this Streamlit app on a browser, run it with the following\n",
-      "  command:\n",
-      "\n",
-      "    streamlit run C:\\Users\\my computers\\anaconda3\\Lib\\site-packages\\ipykernel_launcher.py [ARGUMENTS]\n",
-      "2025-06-09 15:51:42.690 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.691 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.692 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.693 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.695 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.696 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.701 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.702 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.703 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.704 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.705 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.706 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.707 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.708 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.709 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.781 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.953 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.954 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.955 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:42.956 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.072 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.220 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.221 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.221 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.222 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.272 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.442 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.443 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.444 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.446 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.478 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.479 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.480 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.480 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.483 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n",
-      "2025-06-09 15:51:43.483 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.\n"
-     ]
-    }
-   ],
-   "source": [
-    "import pandas as pd\n",
-    "import streamlit as st\n",
-    "import seaborn as sns\n",
-    "import matplotlib.pyplot as plt\n",
-    "\n",
-    "# Load Data\n",
-    "df = pd.read_csv('books.csv')\n",
-    "\n",
-    "# Preprocessing\n",
-    "rating_map = {'One': 1, 'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5}\n",
-    "df['Rating_Num'] = df['Rating'].map(rating_map)\n",
-    "df['Price_Num'] = df['Price'].str.replace('£', '').astype(float)\n",
-    "\n",
-    "# Sidebar\n",
-    "st.sidebar.title(\"📊 Filter\")\n",
-    "min_rating = st.sidebar.slider(\"Minimum Rating\", 1, 5, 1)\n",
-    "filtered_df = df[df['Rating_Num'] >= min_rating]\n",
-    "\n",
-    "# Title\n",
-    "st.title(\"📚 Book Price & Rating Dashboard\")\n",
-    "\n",
-    "# Show data\n",
-    "if st.checkbox(\"Show Raw Data\"):\n",
-    "    st.write(filtered_df)\n",
-    "\n",
-    "# Bar plot of Ratings\n",
-    "st.subheader(\"⭐ Rating Count\")\n",
-    "fig1, ax1 = plt.subplots()\n",
-    "sns.countplot(x='Rating_Num', data=filtered_df, ax=ax1, palette='pastel')\n",
-    "st.pyplot(fig1)\n",
-    "\n",
-    "# Price Distribution\n",
-    "st.subheader(\"💰 Price Distribution\")\n",
-    "fig2, ax2 = plt.subplots()\n",
-    "sns.histplot(filtered_df['Price_Num'], bins=10, kde=True, ax=ax2, color='skyblue')\n",
-    "st.pyplot(fig2)\n",
-    "\n",
-    "# Price vs Rating Scatter\n",
-    "st.subheader(\"📈 Price vs Rating\")\n",
-    "fig3, ax3 = plt.subplots()\n",
-    "sns.scatterplot(x='Rating_Num', y='Price_Num', data=filtered_df, ax=ax3)\n",
-    "st.pyplot(fig3)\n",
-    "\n",
-    "# Top 5 Expensive & Cheap\n",
-    "st.subheader(\"💎 Top 5 Most Expensive Books\")\n",
-    "st.write(filtered_df.sort_values(by='Price_Num', ascending=False).head(5))\n",
-    "\n",
-    "st.subheader(\"💸 Top 5 Cheapest Books\")\n",
-    "st.write(filtered_df.sort_values(by='Price_Num').head(5))\n"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 3,
-   "id": "f245c168",
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "import os"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 4,
-   "id": "743736d9",
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/plain": [
-       "'C:\\\\Users\\\\my computers\\\\Analytics projects'"
-      ]
-     },
-     "execution_count": 4,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "os.getcwd()"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": None,
-   "id": "ce87fd22",
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3 (ipykernel)",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.11.4"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 5
-}
+# Save this in the same folder as books.csv
+import pandas as pd
+import streamlit as st
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load Data
+df = pd.read_csv('books.csv')
+
+# Preprocessing
+rating_map = {'One': 1, 'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5}
+df['Rating_Num'] = df['Rating'].map(rating_map)
+df['Price_Num'] = df['Price'].str.replace('£', '').astype(float)
+
+# Sidebar
+st.sidebar.title("📊 Filter")
+min_rating = st.sidebar.slider("Minimum Rating", 1, 5, 1)
+filtered_df = df[df['Rating_Num'] >= min_rating]
+
+# Title
+st.title("📚 Book Price & Rating Dashboard")
+
+# Show data
+if st.checkbox("Show Raw Data"):
+    st.write(filtered_df)
+
+# Rating Count
+st.subheader("⭐ Rating Count")
+fig1, ax1 = plt.subplots()
+sns.countplot(x='Rating_Num', data=filtered_df, ax=ax1, palette='pastel')
+st.pyplot(fig1)
+
+# Price Distribution
+st.subheader("💰 Price Distribution")
+fig2, ax2 = plt.subplots()
+sns.histplot(filtered_df['Price_Num'], bins=10, kde=True, ax=ax2, color='skyblue')
+st.pyplot(fig2)
+
+# Price vs Rating
+st.subheader("📈 Price vs Rating")
+fig3, ax3 = plt.subplots()
+sns.scatterplot(x='Rating_Num', y='Price_Num', data=filtered_df, ax=ax3)
+st.pyplot(fig3)
+
+# Top Expensive & Cheap
+st.subheader("💎 Top 5 Most Expensive Books")
+st.write(filtered_df.sort_values(by='Price_Num', ascending=False).head(5))
+
+st.subheader("💸 Top 5 Cheapest Books")
+st.write(filtered_df.sort_values(by='Price_Num').head(5))
